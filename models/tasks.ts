@@ -5,4 +5,5 @@ export interface Task {
   status: "todo" | "in_progress" | "done";
   createdAt: string;
   assignedTo?: number;
+  deadline?: string; // format ISO, ex: "2025-09-18T18:00"
 }

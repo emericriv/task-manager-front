@@ -9,8 +9,8 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: () => login(username, password),
-    onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.access);
+    onSuccess: () => {
+      // La fonction login s'occupe déjà du stockage, inutile de le refaire ici
       navigate("/dashboard");
     },
   });
