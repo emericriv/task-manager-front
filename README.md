@@ -1,69 +1,70 @@
-# React + TypeScript + Vite
+# Task Manager Front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mini gestionnaire de tâches collaboratif — Frontend
 
-Currently, two official plugins are available:
+## Stack technique
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** (TypeScript)
+- **Vite** (build ultra-rapide)
+- **TanStack Query** (gestion des requêtes et du cache)
+- **Axios** (requêtes HTTP)
+- **React Router** (navigation)
+- **Tailwind CSS** (UI moderne)
 
-## Expanding the ESLint configuration
+## Fonctionnalités principales
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Authentification JWT (connexion, inscription)
+- Dashboard des tâches (CRUD)
+- Communication avec une API Django REST (backend séparé)
+- Gestion du token JWT (localStorage)
+- Navigation Login / Inscription / Dashboard
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Structure du projet
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+front/
+├── src/
+│   ├── App.tsx            # Routing principal
+│   ├── main.tsx           # Entrée de l'app, providers
+│   ├── assets/styles/     # Styles globaux
+│   ├── pages/
+│   │   ├── LoginPage.tsx      # Page de connexion
+│   │   ├── SignUpPage.tsx     # Page d'inscription
+│   │   ├── DashboardPage.tsx  # Liste et gestion des tâches
+│   ├── models/
+│   │   └── tasks.ts           # Typage des tâches
+│   ├── services/
+│   │   └── apiServices.ts     # Fonctions Axios pour l'API
+│   └── ...
+├── public/               # Fichiers statiques
+├── package.json          # Dépendances
+├── vite.config.ts        # Config Vite
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation & lancement
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd front
+npm install
+npm run dev
 ```
+
+## Configuration
+
+- L’URL de l’API backend est définie dans un fichier environnement à part.
+- Les tokens JWT sont stockés dans le localStorage après connexion.
+- Les endpoints `/api/token/`, `/api/register/`, `/api/tasks/` sont utilisés pour l’auth et le CRUD.
+
+## Fonctionnement
+
+1. **Inscription** : Crée un nouvel utilisateur via `/api/register/`.
+2. **Connexion** : Récupère un token JWT via `/api/token/`.
+3. **Dashboard** : Affiche, crée, modifie, supprime des tâches via `/api/tasks/` (token requis).
+
+## Bonnes pratiques
+
+- Utilise TanStack Query pour toutes les requêtes (mutations, queries).
+- Sépare bien les modèles, services et pages pour la clarté.
+- Utilise Tailwind pour un style rapide et moderne.
+
