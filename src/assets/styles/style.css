@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Described method to manually toggle dark mode according to tailwind docs */
+@custom-variant dark (&:where(.dark, .dark *));
+ 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+}

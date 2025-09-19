@@ -57,7 +57,7 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:cursor-pointer"
             disabled={mutation.isPending}
           >
             {mutation.isPending ? "Connexion..." : "Login"}
@@ -69,7 +69,7 @@ export default function LoginPage() {
         <div className="mt-4 text-center">
           <span>Pas encore inscrit ? </span>
           <button
-            className="text-blue-600 underline"
+            className="text-blue-600 underline hover:cursor-pointer"
             type="button"
             onClick={() => (window.location.href = "/signup")}
           >

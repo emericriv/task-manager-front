@@ -15,9 +15,15 @@ export default function TaskDetailsModal({ task, onClose, onSave }: Props) {
   );
   const [status, setStatus] = useState<Task["status"]>(task.status);
 
+  // Gestion du clic en dehors de la modale
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // deadline doit être null ou string ISO
     onSave({
       title,
       description,
@@ -28,39 +34,52 @@ export default function TaskDetailsModal({ task, onClose, onSave }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-      <div className="bg-white rounded shadow p-6 min-w-[320px] relative">
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+      onClick={handleOverlayClick}
+    >
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 min-w-[500px] max-w-[96vw] w-[540px] relative border border-gray-200 dark:border-gray-700">
         <button
-          className="absolute top-2 right-2 text-gray-500"
+          className="absolute top-4 right-4 text-gray-500 dark:text-gray-300 text-xl hover:text-blue-500 dark:hover:text-blue-400 transition hover:cursor-pointer"
           onClick={onClose}
         >
           ✕
         </button>
-        <h2 className="text-lg font-bold mb-2">Détails de la tâche</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Titre</label>
+        <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Détails de la tâche
+        </h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Titre
+          </label>
           <input
             type="text"
-            className="border px-2 py-1 rounded"
+            className="border border-gray-200 dark:border-gray-700 px-3 py-2 rounded bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label className="text-sm font-medium">Description</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Description
+          </label>
           <textarea
-            className="border px-2 py-1 rounded"
+            className="border border-gray-200 dark:border-gray-700 px-3 py-2 rounded bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <label className="text-sm font-medium">Deadline</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Deadline
+          </label>
           <input
             type="datetime-local"
-            className="border px-2 py-1 rounded"
+            className="border border-gray-200 dark:border-gray-700 px-3 py-2 rounded bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
           />
-          <label className="text-sm font-medium">Statut</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Statut
+          </label>
           <select
-            className="border px-2 py-1 rounded"
+            className="border border-gray-200 dark:border-gray-700 px-3 py-2 rounded bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100"
             value={status}
             onChange={(e) => setStatus(e.target.value as Task["status"])}
           >
@@ -70,7 +89,7 @@ export default function TaskDetailsModal({ task, onClose, onSave }: Props) {
           </select>
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 rounded mt-2"
+            className="bg-blue-600 dark:bg-blue-700 text-white py-2 rounded mt-2 hover:bg-blue-700 dark:hover:bg-blue-800 transition hover:cursor-pointer"
           >
             Enregistrer
           </button>

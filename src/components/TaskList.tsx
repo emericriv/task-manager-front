@@ -94,16 +94,16 @@ export default function TaskList() {
         renderTask={(task) => (
           <div
             key={task.id}
-            className="relative min-w-[180px] bg-yellow-100 rounded p-2 shadow mr-2 flex flex-col justify-between"
+            className="relative min-w-[180px] rounded-xl p-4 shadow-lg mr-2 flex flex-col justify-between bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700"
           >
             <div>
               <div className="font-bold text-sm mb-1">{task.title}</div>
-              <div className="text-xs text-gray-700 mb-1">
+              <div className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 {task.description?.slice(0, 40)}
                 {task.description && task.description.length > 40 ? "..." : ""}
               </div>
               {task.deadline && (
-                <div className="text-xs text-red-500">
+                <div className="text-xs text-pink-600 dark:text-pink-400">
                   ⏰ {formatDeadline(task.deadline)}
                 </div>
               )}
@@ -111,20 +111,20 @@ export default function TaskList() {
             <div className="flex items-center justify-between mt-2">
               <div className="flex flex-col gap-1">
                 <button
-                  className="bg-blue-500 text-white text-xs px-2 py-1 rounded"
+                  className="bg-blue-500 dark:bg-blue-700 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 dark:hover:bg-blue-800 transition hover:cursor-pointer"
                   onClick={() => handleStatusChange(task, "todo")}
                 >
                   À faire
                 </button>
                 <button
-                  className="bg-green-500 text-white text-xs px-2 py-1 rounded"
+                  className="bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition hover:cursor-pointer"
                   onClick={() => handleStatusChange(task, "done")}
                 >
                   Terminée
                 </button>
               </div>
               <button
-                className="ml-2 text-gray-600 text-xl"
+                className="ml-2 text-gray-600 text-xl hover:cursor-pointer"
                 onClick={() => setModalTask(task)}
                 title="Détails"
               >
@@ -141,16 +141,16 @@ export default function TaskList() {
         renderTask={(task) => (
           <div
             key={task.id}
-            className="relative min-w-[180px] bg-blue-100 rounded p-2 shadow mr-2 flex flex-col justify-between"
+            className="relative min-w-[180px] rounded-xl p-4 shadow-lg mr-2 flex flex-col justify-between bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700"
           >
             <div>
               <div className="font-bold text-sm mb-1">{task.title}</div>
-              <div className="text-xs text-gray-700 mb-1">
+              <div className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 {task.description?.slice(0, 40)}
                 {task.description && task.description.length > 40 ? "..." : ""}
               </div>
               {task.deadline && (
-                <div className="text-xs text-red-500">
+                <div className="text-xs text-pink-600 dark:text-pink-400">
                   ⏰ {formatDeadline(task.deadline)}
                 </div>
               )}
@@ -158,20 +158,20 @@ export default function TaskList() {
             <div className="flex items-center justify-between mt-2">
               <div className="flex flex-col gap-1">
                 <button
-                  className="bg-yellow-500 text-white text-xs px-2 py-1 rounded"
+                  className="bg-yellow-500 dark:bg-yellow-700 text-white text-xs px-2 py-1 rounded hover:bg-yellow-600 dark:hover:bg-yellow-800 transition hover:cursor-pointer"
                   onClick={() => handleStatusChange(task, "in_progress")}
                 >
                   En cours
                 </button>
                 <button
-                  className="bg-green-500 text-white text-xs px-2 py-1 rounded"
+                  className="bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition hover:cursor-pointer"
                   onClick={() => handleStatusChange(task, "done")}
                 >
                   Terminée
                 </button>
               </div>
               <button
-                className="ml-2 text-gray-600 text-xl"
+                className="ml-2 text-gray-600 text-xl hover:cursor-pointer"
                 onClick={() => setModalTask(task)}
                 title="Détails"
               >
@@ -188,11 +188,14 @@ export default function TaskList() {
         renderTask={(task) => (
           <div
             key={task.id}
-            className="relative w-full bg-gray-100 rounded p-2 shadow mb-1 flex items-center justify-between"
+            className="relative w-full rounded-xl p-4 shadow-lg mb-1 flex items-center justify-between bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700"
           >
             <span className="font-semibold text-sm">{task.title}</span>
+            <span className="font-semibold text-sm text-gray-900 dark:text-gray-100">
+              {task.title}
+            </span>
             <button
-              className="ml-2 text-gray-600 text-xl"
+              className="ml-2 text-gray-600 dark:text-gray-300 text-xl hover:text-blue-500 dark:hover:text-blue-400 transition hover:cursor-pointer"
               onClick={() => setModalTask(task)}
               title="Détails"
             >
