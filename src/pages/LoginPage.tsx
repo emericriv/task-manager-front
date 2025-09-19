@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../../services/apiServices";
+import { login } from "../services/apiServices";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const { isAuthenticated, loginContext } = useAuth();
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -11,7 +18,8 @@ export default function LoginPage() {
     mutationFn: () => login(username, password),
     onSuccess: () => {
       // La fonction login s'occupe déjà du stockage, inutile de le refaire ici
-      navigate("/dashboard");
+      loginContext(); // Met à jour le contexte utilisateur
+      navigate("/");
     },
   });
 

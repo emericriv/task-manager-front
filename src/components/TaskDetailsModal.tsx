@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Task } from "../../models/tasks";
+import type { Task } from "../models/tasks";
 
 interface Props {
   task: Task;

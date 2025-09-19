@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createTask } from "../../services/apiServices";
-import type { Task } from "../../models/tasks";
+import { createTask } from "../services/apiServices";
+import type { Task } from "../models/tasks";
 
 export default function CreateTaskComponent() {
   const [title, setTitle] = useState("");
@@ -9,11 +9,10 @@ export default function CreateTaskComponent() {
   const [deadline, setDeadline] = useState("");
   const [status, setStatus] = useState<Task["status"]>("todo");
   const queryClient = useQueryClient();
-  const token = localStorage.getItem("accessToken") || "";
 
   const mutation = useMutation({
     mutationFn: () =>
-      createTask(token, {
+      createTask({
         title,
         description,
         deadline,

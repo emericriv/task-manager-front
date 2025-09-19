@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { register } from "../../services/apiServices";
+import { Navigate, useNavigate } from "react-router-dom";
+import { register } from "../services/apiServices";
+import { useAuth } from "../context/AuthContext";
 
 export default function SignUpPage() {
+  const { isAuthenticated } = useAuth();
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

@@ -1,7 +1,7 @@
 import { useState, type JSX } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchTasks, updateTask } from "../../services/apiServices";
-import type { Task } from "../../models/tasks";
+import { fetchTasks, updateTask } from "../services/apiServices";
+import type { Task } from "../models/tasks";
 import TaskDetailsModal from "./TaskDetailsModal";
 
 function formatDeadline(dateStr?: string) {
@@ -52,15 +52,14 @@ function Section({
 }
 
 export default function TaskList() {
-  const token = localStorage.getItem("accessToken") || "";
   const queryClient = useQueryClient();
   const { data: tasks = [] } = useQuery({
     queryKey: ["tasks"],
-    queryFn: () => fetchTasks(token),
+    queryFn: () => fetchTasks(),
   });
   const updateMutation = useMutation({
     mutationFn: ({ id, updates }: { id: number; updates: Partial<Task> }) =>
-      updateTask(token, id, updates),
+      updateTask(id, updates),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
