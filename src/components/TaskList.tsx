@@ -129,11 +129,11 @@ export default function TaskList() {
           return (
             <div
               key={task.id}
-              className="relative min-w-[220px] max-w-xs w-full rounded-xl p-4 shadow flex flex-col justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              className="relative h-full min-w-[220px] max-w-xs w-full rounded-xl p-4 shadow flex flex-col justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
               style={{ marginBottom: 0 }}
             >
               <button
-                className="absolute top-3 right-3 text-blue-500 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 rounded-full p-2 transition"
+                className="absolute top-3 right-3 text-blue-500 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 rounded-full p-2 transition cursor-pointer"
                 onClick={() => setModalTask(task)}
                 title="Détails"
               >
@@ -150,23 +150,30 @@ export default function TaskList() {
                 <div className="font-semibold text-base mb-1 text-gray-900 dark:text-gray-100 break-words">
                   {task.title}
                 </div>
-                <div className="text-xs text-gray-700 dark:text-gray-300 mb-1 break-words">
+                <div
+                  className="text-xs text-gray-700 dark:text-gray-300 mb-1 break-words"
+                  style={{
+                    minHeight: "32px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   {task.description?.slice(0, 60)}
                   {task.description && task.description.length > 60
                     ? "..."
                     : ""}
                 </div>
               </div>
-              <div className="flex flex-row gap-2 mb-2">
+              <div className="flex flex-row gap-2 mb-2 mt-auto">
                 <button
-                  className="flex items-center gap-1 bg-yellow-500 dark:bg-yellow-700 text-white text-xs px-2 py-1 rounded hover:bg-yellow-600 dark:hover:bg-yellow-800 transition"
+                  className="flex items-center gap-1 bg-yellow-500 dark:bg-yellow-700 text-white text-xs px-2 py-1 rounded hover:bg-yellow-600 dark:hover:bg-yellow-800 transition cursor-pointer"
                   onClick={() => handleStatusChange(task, "todo")}
                   title="Marquer à faire"
                 >
                   <span>⏳</span> À faire
                 </button>
                 <button
-                  className="flex items-center gap-1 bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition"
+                  className="flex items-center gap-1 bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition cursor-pointer"
                   onClick={() => handleStatusChange(task, "done")}
                   title="Marquer terminée"
                 >
@@ -200,11 +207,11 @@ export default function TaskList() {
           return (
             <div
               key={task.id}
-              className="relative min-w-[220px] max-w-xs w-full rounded-xl p-4 shadow flex flex-col justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              className="relative h-full min-w-[220px] max-w-xs w-full rounded-xl p-4 shadow flex flex-col justify-between bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
               style={{ marginBottom: 0 }}
             >
               <button
-                className="absolute top-3 right-3 text-blue-500 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 rounded-full p-2 transition"
+                className="absolute top-3 right-3 text-blue-500 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 rounded-full p-2 transition cursor-pointer"
                 onClick={() => setModalTask(task)}
                 title="Détails"
               >
@@ -221,23 +228,31 @@ export default function TaskList() {
                 <div className="font-semibold text-base mb-1 text-gray-900 dark:text-gray-100 break-words">
                   {task.title}
                 </div>
-                <div className="text-xs text-gray-700 dark:text-gray-300 mb-1 break-words">
+
+                <div
+                  className="text-xs text-gray-700 dark:text-gray-300 mb-1 break-words"
+                  style={{
+                    minHeight: "32px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   {task.description?.slice(0, 60)}
                   {task.description && task.description.length > 60
                     ? "..."
                     : ""}
                 </div>
               </div>
-              <div className="flex flex-row gap-2 mb-2">
+              <div className="flex flex-row gap-2 mb-2 mt-auto">
                 <button
-                  className="flex items-center gap-1 bg-blue-500 dark:bg-blue-700 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 dark:hover:bg-blue-800 transition"
+                  className="flex items-center gap-1 bg-blue-500 dark:bg-blue-700 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 dark:hover:bg-blue-800 transition cursor-pointer"
                   onClick={() => handleStatusChange(task, "in_progress")}
                   title="Marquer en cours"
                 >
                   <span>🚧</span> En cours
                 </button>
                 <button
-                  className="flex items-center gap-1 bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition"
+                  className="flex items-center gap-1 bg-green-500 dark:bg-green-700 text-white text-xs px-2 py-1 rounded hover:bg-green-600 dark:hover:bg-green-800 transition cursor-pointer"
                   onClick={() => handleStatusChange(task, "done")}
                   title="Marquer terminée"
                 >
