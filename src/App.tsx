@@ -9,10 +9,10 @@ import Navbar from "./components/Navbar";
 export default function App() {
   return (
     <AuthProvider>
-      <div className="w-full h-screen flex flex-col bg-slate-300 dark:bg-slate-900">
+      <div className="w-full h-full min-h-screen flex flex-col bg-slate-300 dark:bg-slate-900">
         <Navbar />
         <div
-          className="flex-1 flex flex-col overflow-hidden"
+          className="flex-1 flex flex-col"
           style={{ height: "calc(100vh - 64px)" }}
         >
           <Routes>

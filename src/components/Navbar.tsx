@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="w-full flex items-center justify-between px-8 py-4 bg-slate-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100 shadow-lg"
+      className="w-full flex items-center justify-between sticky top-0 px-8 py-4 bg-slate-100 dark:bg-slate-800 text-gray-900 dark:text-gray-100 shadow-lg"
       style={{ height: "64px" }}
     >
       <div className="flex gap-6">
